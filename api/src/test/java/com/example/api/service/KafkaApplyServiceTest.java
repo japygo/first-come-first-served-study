@@ -29,6 +29,7 @@ class KafkaApplyServiceTest {
     @BeforeEach
     void setUp() {
         couponCountRepository.flushAll();
+        couponRepository.deleteAll();
     }
 
     @Test
@@ -49,6 +50,8 @@ class KafkaApplyServiceTest {
         }
 
         latch.await();
+
+        Thread.sleep(10000);
 
         long count = couponRepository.count();
 
